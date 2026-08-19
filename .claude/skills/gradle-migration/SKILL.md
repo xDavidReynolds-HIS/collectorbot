@@ -13,8 +13,8 @@ This replaces the old workflow (Lerna orchestration, npm scripts for build/test)
 ## Reference Implementations
 
 - **First migrated bot in this repo**: `package/avigilon/alta/access/` (when complete)
-- **Cross-repo reference (auditlogic conventions, mostly applicable)**: `auditlogic/collectorbot/package/github/github/collectorbot/`
-- **Skill source-of-truth (auditlogic)**: `auditlogic/collectorbot/.claude/skills/gradle-migration/SKILL.md`
+
+This skill is self-contained — every convention it relies on is spelled out below.
 
 ## Prerequisites
 
@@ -244,11 +244,11 @@ This repo's collectorbots publish under `@zerobias-org/collectorbot-*`. Other co
 | `@zerobias-org/module-*` | **NO CHANGE** | Open-source modules stay `@zerobias-org` |
 | `@zerobias-org/product-*` | **NO CHANGE** | Open-source product catalogs stay `@zerobias-org` |
 | `@zerobias-org/vendor-*` | **NO CHANGE** | Open-source vendors stay `@zerobias-org` |
-| `@auditlogic/schema-*` | **NO CHANGE** | Schemas stay `@auditlogic` (shared with auditlogic) |
+| `@auditlogic/schema-*` | **NO CHANGE** | Schemas stay `@auditlogic` (shared scope) |
 | `@auditmation/*` | -> `@zerobias-org/*` or `@zerobias-com/*` | All utilities move |
 | `@auditlogic/product-*` (legacy) | -> `@zerobias-org/product-*` | Product catalogs move to org scope |
 
-**Key difference vs auditlogic/collectorbot:** that repo uses `@auditlogic/collectorbot-*` and `@auditlogic/module-*`. This repo (zerobias-org) uses `@zerobias-org/collectorbot-*` and `@zerobias-org/module-*`. **Do not change package scopes when migrating bots in this repo.**
+**Key difference vs the proprietary counterpart repo:** it uses `@auditlogic/collectorbot-*` and `@auditlogic/module-*`. This repo (zerobias-org) uses `@zerobias-org/collectorbot-*` and `@zerobias-org/module-*`. **Do not change package scopes when migrating bots in this repo.**
 
 ## Common Issues
 

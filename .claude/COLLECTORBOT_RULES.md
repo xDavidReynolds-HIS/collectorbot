@@ -648,7 +648,7 @@ The package name is derived directly from the directory structure:
 | `version` | Semantic version | `1.1.2` |
 | `description` | Short description | `Avigilon Alta Access Collectorbot` |
 | `license` | License type | `UNLICENSED` |
-| `author` | Author email | `ctamas@zerobias.com` |
+| `author` | Author email | `team@zerobias.com` |
 | `main` | Entry point | `dist/src/index.js` |
 | `directories.src` | Source directory | `src` |
 | `files` | Published files | `["dist", "pnpm-lock.yaml", "*.yml", "*.md"]` |
