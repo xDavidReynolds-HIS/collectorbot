@@ -4,7 +4,7 @@
   "description": "Auditmation Generic TLS Collector",
   "type": "module",
   "main": "dist/src/index.js",
-  "author": "team@zerobias.com",
+  "author": "ctamas@zerobias.com",
   "license": "UNLICENSED",
   "directories": {
     "src": "src"

@@ -3,7 +3,7 @@
   "version": "2.0.1",
   "description": "Avigilon Alta Access Collector",
   "license": "UNLICENSED",
-  "author": "team@zerobias.com",
+  "author": "ctamas@zerobias.com",
   "type": "module",
   "main": "dist/src/index.js",
   "files": [
