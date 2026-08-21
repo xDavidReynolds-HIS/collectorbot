@@ -138,7 +138,7 @@ cp <reference-collector>/.gitignore .
   "version": "0.0.0",
   "description": "<Product Name> collectorbot",
   "license": "UNLICENSED",
-  "author": "ctamas@zerobias.com",
+  "author": "team@zerobias.com",
   "main": "dist/src/index.js",
   "directories": {
     "src": "src"

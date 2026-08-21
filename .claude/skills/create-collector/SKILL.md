@@ -113,7 +113,7 @@ generated/
 
 **Step 3.1: Create package.json** (use template from DEVELOPMENT_WORKFLOW.md)
 - Version: 0.0.0
-- Author: ctamas@zerobias.com
+- Author: team@zerobias.com
 - Dependencies: module + schema (base + ts) + core deps
 - Get latest versions from npm
 

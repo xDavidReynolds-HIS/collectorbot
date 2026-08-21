@@ -26,7 +26,7 @@ Read and validate against: `.claude/COLLECTORBOT_RULES.md` sections:
 - [ ] Files includes: `dist`, `*.yml`, `*.md`, `dependency-tree.json`
 - [ ] All required scripts present and EXACT match to template
 - [ ] Repository directory matches package path
-- [ ] Author is `ctamas@zerobias.com` for new collectors
+- [ ] Author is `team@zerobias.com` for new collectors
 - [ ] auditmation.package format: `<vendor>.<suite?>.<product>.collectorbot`
 - [ ] auditmation.dataloader-version is exactly `0.5.4`
 - [ ] auditmation.import-artifact is exactly `collectorbot`
