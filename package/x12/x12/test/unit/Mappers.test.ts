@@ -10,6 +10,15 @@ function fixture(name: string): X12Transaction {
   return JSON.parse(readFileSync(new URL(`../fixtures/${name}.json`, import.meta.url), 'utf8'));
 }
 
+/**
+ * The 837I fixture with its DTP*434 statement period swapped. The fixture's own period is
+ * one day (`20260905-20260905`), so it cannot tell a lost to-date from a correct one.
+ */
+function with837IStatementPeriod(dtp03: string): X12Transaction {
+  const raw = readFileSync(new URL('../fixtures/837I-005010X223A2.json', import.meta.url), 'utf8');
+  return JSON.parse(raw.replace('"20260905-20260905"', JSON.stringify(dtp03)));
+}
+
 const round = (n: number) => Math.round(n * 100) / 100;
 const sum = (values: Array<number | undefined>) => round(values.reduce<number>((a, v) => a + (v ?? 0), 0));
 
@@ -91,6 +100,14 @@ describe('map837 — institutional (X223)', () => {
       statementFromDate: '2026-09-05',
       statementToDate: '2026-09-05',
     });
+  });
+
+  it('keeps both ends of a multi-day statement period, raw RD8 or ISO interval', () => {
+    // module#59 passes DTP03 through raw; module#62 normalizes RD8 to an ISO 8601 interval.
+    for (const dtp03 of ['20260901-20260930', '2026-09-01/2026-09-30']) {
+      const [claim] = map837(with837IStatementPeriod(dtp03)).claims;
+      expect(claim, dtp03).to.include({ statementFromDate: '2026-09-01', statementToDate: '2026-09-30' });
+    }
   });
 
   it('maps revenue codes and line charges', () => {

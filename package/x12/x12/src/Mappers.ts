@@ -38,8 +38,9 @@ function num(value: unknown): number | undefined {
 }
 
 /**
- * Schema `date` → `YYYY-MM-DD`. DT elements arrive already ISO; DTP03 is AN
- * and arrives raw (`CCYYMMDD`, or `CCYYMMDD-CCYYMMDD` for RD8 — first half).
+ * Schema `date` → `YYYY-MM-DD`. DT elements arrive already ISO. DTP03 arrives raw
+ * from module#59 (`CCYYMMDD`, or `CCYYMMDD-CCYYMMDD` for RD8 — first half) and as
+ * ISO from module#62, which normalizes it by its 1250 qualifier.
  */
 export function toIsoDate(value: unknown): string | undefined {
   const s = str(value);
@@ -49,10 +50,16 @@ export function toIsoDate(value: unknown): string | undefined {
   return m ? `${m[1]}-${m[2]}-${m[3]}` : undefined;
 }
 
-/** DTP date or date range → [from, to]; a D8 gives the same date twice. */
+/**
+ * DTP date or date range → [from, to]; a D8 gives the same date twice. An RD8 comes as
+ * raw `CCYYMMDD-CCYYMMDD` (module#59) or as the ISO 8601 interval
+ * `YYYY-MM-DD/YYYY-MM-DD` (module#62) — both must keep the to-date.
+ */
 function dateRange(value: unknown): [string | undefined, string | undefined] {
   const s = str(value);
-  const range = s ? /^(\d{8})-(\d{8})$/.exec(s) : null;
+  const range = s
+    ? (/^(\d{8})-(\d{8})$/.exec(s) ?? /^(\d{4}-\d{2}-\d{2})\/(\d{4}-\d{2}-\d{2})$/.exec(s))
+    : null;
   return range ? [toIsoDate(range[1]), toIsoDate(range[2])] : [toIsoDate(s), toIsoDate(s)];
 }
 
